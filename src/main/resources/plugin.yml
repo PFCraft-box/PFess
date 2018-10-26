@@ -1,0 +1,41 @@
+name: PFess
+main: cn.mgazul.pfess.Main
+version: @version@
+author: Mgazul
+api-version: 1.13
+softdepend: [PF-CoreLib, PlaceholderAPI]
+
+commands:
+  fcoins:
+  money:
+  pf:
+  pfc:
+  help:
+  suicide:
+  cleare:
+  mtall:
+  sign:
+  ascmd:
+  lord:
+  abba:
+  pfwb:
+  setspawn:
+  spawn:
+  hat:
+  gj:
+  tpp:
+  tpa:
+  tpaccept:
+  tpdeny:
+  back:
+  home:
+  sethome:
+  delhome:
+  homelist:
+  gm:
+  fly:
+  vanish:
+  mute:
+  speed:
+
+   
