@@ -81,7 +81,8 @@ public class PlayerListener implements Listener{
 	  @EventHandler
 	  public void onTpLoc(PlayerTeleportEvent event){
 		  Player p = event.getPlayer();
-			  ConfigUtil.setplayerDeathLocation(p);
+		  if(p.hasMetadata("NPC")) return;
+		  ConfigUtil.setplayerDeathLocation(p);
 	  }
 	  
 	  @EventHandler
