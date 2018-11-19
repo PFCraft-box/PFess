@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import cn.mgazul.pfess.pcommand.*;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
@@ -11,27 +13,6 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import cn.mgazul.pfess.chat.ChatListener;
 import cn.mgazul.pfess.chat.WorldNoCommand;
-import cn.mgazul.pfess.pcommand.AdminCmd;
-import cn.mgazul.pfess.pcommand.CommandBack;
-import cn.mgazul.pfess.pcommand.CommandDelHome;
-import cn.mgazul.pfess.pcommand.CommandFCoins;
-import cn.mgazul.pfess.pcommand.CommandFly;
-import cn.mgazul.pfess.pcommand.CommandGameMode;
-import cn.mgazul.pfess.pcommand.CommandHelp;
-import cn.mgazul.pfess.pcommand.CommandHome;
-import cn.mgazul.pfess.pcommand.CommandHomeList;
-import cn.mgazul.pfess.pcommand.CommandMoney;
-import cn.mgazul.pfess.pcommand.CommandMute;
-import cn.mgazul.pfess.pcommand.CommandSethome;
-import cn.mgazul.pfess.pcommand.CommandSpeed;
-import cn.mgazul.pfess.pcommand.CommandTp;
-import cn.mgazul.pfess.pcommand.CommandTpa;
-import cn.mgazul.pfess.pcommand.CommandTpaccept;
-import cn.mgazul.pfess.pcommand.CommandTpdeny;
-import cn.mgazul.pfess.pcommand.CommandVanish;
-import cn.mgazul.pfess.pcommand.ConsoleCmd;
-import cn.mgazul.pfess.pcommand.Spawn;
-import cn.mgazul.pfess.pcommand.Suicide;
 import cn.mgazul.pfess.plistener.MuteListener;
 import cn.mgazul.pfess.plistener.PlayerListener;
 import cn.mgazul.pfess.signedit.SignClick;
@@ -112,7 +93,7 @@ public class Main extends JavaPlugin implements Listener{
 			getCommand("mute").setExecutor(new CommandMute());
 			getCommand("speed").setExecutor(new CommandSpeed());
 			getCommand("speed").setTabCompleter(new CommandSpeed());
-			//getCommand("hat").setExecutor(new CommandHat());
+			getCommand("tags").setExecutor(new CommandTags());
 			
 	  }
 	  

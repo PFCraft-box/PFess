@@ -21,9 +21,9 @@ public class PlayerListener implements Listener{
 	@EventHandler
 	  public void onChenghao(PlayerJoinEvent event){
 	    Player player = event.getPlayer();  	
-	    player.setGameMode(GameMode.SURVIVAL);
+	    player.setGameMode(GameMode.CREATIVE);
 	    player.setHealthScale(20D);
-	    player.setAllowFlight(false);
+	    player.setAllowFlight(true);
     		ConfigUtil.create(player);  
             player.sendMessage("§c§l=================《就是江湖》=================");
             player.sendMessage( "§2§l所有信息请查阅菜单内的说明或者对应的NPC");
