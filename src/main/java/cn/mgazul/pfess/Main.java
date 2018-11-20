@@ -5,7 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cn.mgazul.pfcorelib.Msg;
+import cn.mgazul.pfess.chat.ChatFormatListener;
 import cn.mgazul.pfess.pcommand.*;
+import cn.mgazul.pfess.tags.Gui;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
@@ -49,8 +52,12 @@ public class Main extends JavaPlugin implements Listener{
         	Bukkit.getConsoleSender().sendMessage(prefix + " " +"§c请检查插件列表");
         }else {
         	Bukkit.getConsoleSender().sendMessage(prefix + " " +"§a已检查到PF-CoreLib");
-        } 
-	    registerEvents();
+        }
+		if(Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+			PFessPapiHook.hook();
+			Bukkit.getConsoleSender().sendMessage(Msg.prefix + " §a变量系统已关联PlaceholderAPI.");
+		}
+		registerEvents();
 	    registerCommand();
         Bukkit.getConsoleSender().sendMessage(prefix + " " + "§a该插件已成功激活!§e(§b耗时: "+(System.currentTimeMillis() - currentTim)+"§e ms) §7[v" + getDescription().getVersion() + "]");             
     } 
@@ -61,8 +68,9 @@ public class Main extends JavaPlugin implements Listener{
 		    Event.registerEvents(new SignClick(), this);
 		    Event.registerEvents(new WorldNoCommand(), this);
 		    Event.registerEvents(new PlayerListener(), this);
-		    Event.registerEvents(new ChatListener(), this);	
-		  //  Event.registerEvents(new ChatFormatListener(), this);
+		    Event.registerEvents(new ChatListener(), this);
+		    Event.registerEvents(new Gui(), this);
+		    Event.registerEvents(new ChatFormatListener(), this);
 		    getServer().getPluginManager().registerEvents(new MuteListener(), this);
 	  }
 	  
@@ -98,5 +106,7 @@ public class Main extends JavaPlugin implements Listener{
 	  }
 	  
 	  @Override
-	public void onDisable() {}
+	public void onDisable() {
+		  PFessPapiHook.unhook();
+	  }
 }

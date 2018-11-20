@@ -1,5 +1,6 @@
 package cn.mgazul.pfess.chat;
 
+import cn.mgazul.pfess.PFessPapiHook;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,10 +14,7 @@ public class ChatFormatListener implements Listener{
 	    if(e.getMessage() == null) {
 	    	return;
 	    }
-	    if(p.isOp()) {
-	    	e.setFormat("§f<§f "+p.getName()+" §f>§7 "+ e.getMessage().replace("&", "§"));
-	    }
-		e.setFormat("§f<§f "+p.getName()+" §f>§7 "+ e.getMessage());
+		e.setFormat(PFessPapiHook.replacepapi(p,"%pfess_tags%&f<"+p.getName()+"&f>&7 ")+ e.getMessage());
 	  }
 	  
 }

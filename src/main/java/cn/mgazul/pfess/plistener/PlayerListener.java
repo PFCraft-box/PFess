@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
@@ -21,9 +22,9 @@ public class PlayerListener implements Listener{
 	@EventHandler
 	  public void onChenghao(PlayerJoinEvent event){
 	    Player player = event.getPlayer();  	
-	    player.setGameMode(GameMode.CREATIVE);
+	    player.setGameMode(GameMode.SURVIVAL);
 	    player.setHealthScale(20D);
-	    player.setAllowFlight(true);
+	    player.setAllowFlight(false);
     		ConfigUtil.create(player);  
             player.sendMessage("§c§l=================《就是江湖》=================");
             player.sendMessage( "§2§l所有信息请查阅菜单内的说明或者对应的NPC");
@@ -102,6 +103,6 @@ public class PlayerListener implements Listener{
 	  @EventHandler
 	  public void onKick(PlayerKickEvent e) {
 	        e.setLeaveMessage(null);
-	    }	    	  
+	    }
 }
 
