@@ -16,6 +16,6 @@ public class CommandTags implements CommandExecutor {
                 Gui.openMenuGui(player);
             }
         }
-                return false;
+        return false;
     }
 }

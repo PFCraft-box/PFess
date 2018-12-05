@@ -4,7 +4,6 @@ import cn.mgazul.pfcorelib.MsgAPI;
 import cn.mgazul.pfcorelib.configuration.PlayerdataAPI;
 import cn.mgazul.pfess.PFessPapiHook;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.enchantments.Enchantment;
@@ -14,14 +13,20 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.Team;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 public class Gui implements Listener {
 
@@ -31,19 +36,6 @@ public class Gui implements Listener {
         ItemStack itemStack = new ItemStack(mat, 1);
         ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setDisplayName(title);
-        itemStack.setItemMeta(itemMeta);
-        return itemStack;
-    }
-
-    public ItemStack createItem1(final Material mat, final String title, final String[] lores) {
-        final ItemStack itemStack = new ItemStack(mat, 1);
-        final ItemMeta itemMeta = itemStack.getItemMeta();
-        itemMeta.setDisplayName(title);
-        final List<String> lines = new ArrayList<String>();
-        for (final String line : lores) {
-            lines.add(ChatColor.translateAlternateColorCodes('&', line));
-        }
-        itemMeta.setLore(lines);
         itemStack.setItemMeta(itemMeta);
         return itemStack;
     }
@@ -101,6 +93,8 @@ public class Gui implements Listener {
                 Config.set("Tag",null);
                 PlayerdataAPI.saveYaml(p.getUniqueId(),Config);
                 p.closeInventory();
+                p.setPlayerListName(MsgAPI.colormsg("&f"+p.getName()));
+                SetTeamName(p, MsgAPI.colormsg("&f"));
                 MsgAPI.sendMsgToPlayer(p, "&2成功清除已佩戴的称号");
             }
             if(e.getSlot() >=0 && e.getSlot() < 36 && e.getCurrentItem().hasItemMeta()) {
@@ -113,6 +107,8 @@ public class Gui implements Listener {
                           Config.set("Tag",itemname);
                            PlayerdataAPI.saveYaml(p.getUniqueId(),Config);
                            p.closeInventory();
+                           SetTeamName(p, MsgAPI.colormsg(itemname+ "&f"));
+                           p.setPlayerListName(MsgAPI.colormsg(itemname+ "&f"+p.getName()));
                            p.sendMessage(MsgAPI.colormsg("&7已佩戴称号: ")+itemname);
                         }
                     }
@@ -125,22 +121,46 @@ public class Gui implements Listener {
     public void onOpen(InventoryOpenEvent e) {
         if (e.getInventory().getName().equals(menu)) {
             HumanEntity p = e.getPlayer();
-            YamlConfiguration Config = PlayerdataAPI.createYaml(p.getUniqueId());
-            String normal = "§3江湖";
-            final Date d = Calendar.getInstance().getTime();
-            final DateFormat tm = new SimpleDateFormat("yyyy-MM-dd");
-            final String date = tm.format(d);
-            final Date d2 = Calendar.getInstance().getTime();
-            final DateFormat tm2 = new SimpleDateFormat("HH:mm:ss");
-            final String time = tm2.format(d2);
-            if (Config.get("Tags."+normal) == null) {
-                Config.set("Tag",normal);
-                Config.set("Tags."+normal+".is",false);
-                Config.set("Tags."+normal+".time", date + " " + time);
-                Config.set("Tags."+normal+".info", "&2有你在的地方,就是江湖.");
-                Config.set("Tags."+normal+".get", "&e首次打开称号系统并关闭即可获得.");
-                PlayerdataAPI.saveYaml(p.getUniqueId(),Config);
-            }
+            setTags((Player)p, "§3江湖", "&e首次打开称号系统并关闭即可获得.", "&2有你在的地方,就是江湖.");
         }
+    }
+
+    @EventHandler
+    public void onChenghao(PlayerJoinEvent event){
+        Player player = event.getPlayer();
+        YamlConfiguration Config = PlayerdataAPI.createYaml(player.getUniqueId());
+        if (Config.get("Tag") == null) {
+            return;
+        }
+        Gui.SetTeamName(player, MsgAPI.colormsg(Config.getString("Tag")+ "&f"));
+        player.setPlayerListName(MsgAPI.colormsg(Config.getString("Tag")+ "&f"+player.getName()));
+    }
+
+    public static void setTags(Player p, String name, String info, String get){
+        final Date d = Calendar.getInstance().getTime();
+        final DateFormat tm = new SimpleDateFormat("yyyy-MM-dd");
+        final String date = tm.format(d);
+        final Date d2 = Calendar.getInstance().getTime();
+        final DateFormat tm2 = new SimpleDateFormat("HH:mm:ss");
+        final String time = tm2.format(d2);
+        YamlConfiguration Config = PlayerdataAPI.createYaml(p.getUniqueId());
+        if (Config.get("Tags." + name) == null) {
+            Config.set("Tag", name);
+            Config.set("Tags." + name + ".is", false);
+            Config.set("Tags." + name + ".time", date + " " + time);
+            Config.set("Tags." + name + ".info", info);
+            Config.set("Tags." + name + ".get", get);
+            PlayerdataAPI.saveYaml(p.getUniqueId(),Config);
+        }
+    }
+
+    public static void SetTeamName(final Player p, String teamname) {
+        final Scoreboard board = Bukkit.getScoreboardManager().getMainScoreboard();
+        if (board.getTeam(p.getDisplayName()) != null) {
+            board.getTeam(p.getDisplayName()).unregister();
+        }
+        final Team team = board.registerNewTeam(p.getDisplayName());
+        team.setPrefix(teamname);
+        team.addPlayer(p);
     }
 }

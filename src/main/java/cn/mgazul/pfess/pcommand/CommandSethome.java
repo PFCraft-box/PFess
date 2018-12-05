@@ -32,10 +32,10 @@ public class CommandSethome implements CommandExecutor{
 					  int homesize = ConfigUtil.getplayerHomesize(player);
 					  int homemaxsize = ConfigUtil.getplayerHomeMaxsize(player);
 					  if(Config.getString("player.playerdata.HomeMaxSize")==null||homemaxsize<5) {
-						  ConfigUtil.setplayerHomeMaxsize(player, 5.0);
+						  ConfigUtil.setplayerHomeMaxsize(player, 5);
 					  }
 					  if(Config.getString("player.playerdata.HomeSize")==null) {
-						  ConfigUtil.setplayerHomesize(player, 0.0);
+						  ConfigUtil.setplayerHomesize(player, 0);
 					  }
 					  if(homesize == homemaxsize) {
 						  MsgAPI.sendMsgToPlayer(player, Msg.preall + "&c家的数量已达上限:&6 " + homesize);
@@ -43,7 +43,7 @@ public class CommandSethome implements CommandExecutor{
 					  }
 					  if(Config.getString("Home." + name)==null) {
 						  ConfigUtil.setplayerHome(player, name);
-						  ConfigUtil.setplayerHomesize(player, 1.0);
+						  ConfigUtil.setplayerHomesize(player, 1);
 						  MsgAPI.sendMsgToPlayer(player, Msg.preall + "&6"+name +" &2设置成功.");
 					  }else {
 						  MsgAPI.sendMsgToPlayer(player, Msg.preall + "&c你已经有一个家为:&6 "+name); 

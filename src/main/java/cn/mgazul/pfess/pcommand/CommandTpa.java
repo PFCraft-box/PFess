@@ -2,6 +2,7 @@ package cn.mgazul.pfess.pcommand;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -75,7 +76,7 @@ public class CommandTpa implements CommandExecutor{
 	  
 	  public void sendRequest(Player p, Player p1){
 		  MsgAPI.sendMsgToPlayer(p, Msg.preall+"&2已发送传送请求到&6 " + p1.getName() + ".");
-
+		  p1.playSound(p1.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 0.3F, 0.3F);
 	      MsgAPI.sendMsgToPlayer(p1, Msg.preall+ "&6"+p.getName() + "&2已经发送了一个传送请求给你.");
           TextComponent component = new TextComponent(ChatColor.translateAlternateColorCodes('&', "            &6接受"));
           component.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(ChatColor.translateAlternateColorCodes('&', "§6点击接受")).create()));

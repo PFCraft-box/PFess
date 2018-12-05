@@ -1,27 +1,22 @@
 package cn.mgazul.pfess.plistener;
 
+import cn.mgazul.pfcorelib.ChatComponentAPI;
+import cn.mgazul.pfcorelib.configuration.ConfigUtil;
+import cn.mgazul.pfess.Main;
+import cn.mgazul.pfess.pcommand.CommandVanish;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerKickEvent;
-import org.bukkit.event.player.PlayerLoginEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.player.PlayerTeleportEvent;
-import cn.mgazul.pfcorelib.ChatComponentAPI;
-import cn.mgazul.pfcorelib.configuration.ConfigUtil;
-import cn.mgazul.pfess.Main;
-import cn.mgazul.pfess.pcommand.CommandVanish;
+import org.bukkit.event.player.*;
 
 public class PlayerListener implements Listener{
 
 	@EventHandler
 	  public void onChenghao(PlayerJoinEvent event){
-	    Player player = event.getPlayer();  	
+	    Player player = event.getPlayer();
 	    player.setGameMode(GameMode.SURVIVAL);
 	    player.setHealthScale(20D);
 	    player.setAllowFlight(false);
@@ -60,12 +55,7 @@ public class PlayerListener implements Listener{
 	   }	
 	  
 	  public void AutoRespawn(final Player player, int Time){
-		  Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable(){
-		      @Override
-			public void run(){
-		        player.spigot().respawn();
-		      }
-		    }, Time);
+		  Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, () -> player.spigot().respawn(), Time);
 		  }
 	  
 	  //自动复活

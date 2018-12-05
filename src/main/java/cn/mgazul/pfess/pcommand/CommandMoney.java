@@ -116,7 +116,6 @@ public class CommandMoney implements CommandExecutor{
 				        		return false;
 				        	}
 			        		MoneyAPI.addMoneys(target.getUniqueId(), Double.valueOf(coins));
-			        		sender.sendMessage(Msg.preall +"§7" + target.getName() + " §a添加铜钱 §6" + Formater.formatValue(Double.valueOf(coins)));	      
 			        	}else {
 			        		sender.sendMessage("无效数字");
 			        	}

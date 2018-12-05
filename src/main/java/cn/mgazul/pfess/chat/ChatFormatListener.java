@@ -14,7 +14,7 @@ public class ChatFormatListener implements Listener{
 	    if(e.getMessage() == null) {
 	    	return;
 	    }
-		e.setFormat(PFessPapiHook.replacepapi(p,"%pfess_tags%&f<"+p.getName()+"&f>&7 ")+ e.getMessage());
+		e.setFormat(PFessPapiHook.replacepapi(p,"&f[%pfw_worldname%&f]%pfess_tags%&f<"+p.getName()+"&f>&7 ")+ e.getMessage());
 	  }
 	  
 }

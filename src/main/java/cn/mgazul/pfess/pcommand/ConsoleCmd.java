@@ -137,18 +137,7 @@ public class ConsoleCmd implements CommandExecutor, TabCompleter{
 	        }else{
 	        	sender.sendMessage(ChatColor.GRAY + "玩家不在线.");
 		        }
-	     }	
-	    if ((args.length == 2 ) && (args[0].equalsIgnoreCase("bind")) && (sender.hasPermission("pfess.admin"))){
-	        if (Bukkit.getPlayer(args[1]) != null){
-	      	    Player p2 = Bukkit.getPlayer(args[1]);
-	      	    ItemStack item= p2.getInventory().getItemInOffHand();
-	      	    ItemMeta isMeta = item.getItemMeta(); 
-	      	    isMeta.addEnchant(Enchantment.BINDING_CURSE,10,true); 
-	      	    p2.updateInventory();
-	        }else{
-	        	sender.sendMessage(ChatColor.GRAY + "玩家不在线.");
-		        }
-	     }	
+	     }
 	    if ((args.length == 2) && (args[0].equalsIgnoreCase("bcc")) && (sender.hasPermission("pfess.admin"))){	
 	        StringBuilder announcementBuilder = new StringBuilder(args[1]);
 	        for (int i = 0; i < args.length; i++) {
