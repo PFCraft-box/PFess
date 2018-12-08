@@ -39,9 +39,11 @@ public class CommandHomeList implements CommandExecutor{
     public ArrayList<String> listHomes(Player p) {
     	YamlConfiguration Config = PlayerdataAPI.createYaml(p.getUniqueId()); 
         final ArrayList<String> list = new ArrayList<String>();
-        for (final String key : Config.getConfigurationSection("Home").getKeys(false)) {
-            list.add(key);
-        }
+		if (Config.getConfigurationSection("Home.") != null) {
+			for (final String key : Config.getConfigurationSection("Home").getKeys(false)) {
+				list.add(key);
+			}
+		}
         return list;
     }
 }

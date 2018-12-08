@@ -109,7 +109,7 @@ public class CommandMoney implements CommandExecutor{
 			}
 	    if ((args.length == 2) && (args[0].equalsIgnoreCase("adl"))) {
 		      if (sender.isOp()) {
-			        for(OfflinePlayer target : Bukkit.getOfflinePlayers()) {
+			        for(Player target : Bukkit.getOnlinePlayers()) {
 			        	String coins = args[1];
 			        	if(Java.isNumeric(coins)) {
 				        	if(target.getName() == null ) {
