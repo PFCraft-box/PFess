@@ -31,8 +31,16 @@ public class CommandSethome implements CommandExecutor{
 					  }
 					  int homesize = ConfigUtil.getplayerHomesize(player);
 					  int homemaxsize = ConfigUtil.getplayerHomeMaxsize(player);
-					  if(Config.getString("player.playerdata.HomeMaxSize")==null||homemaxsize<5) {
+					  if(Config.getString("player.playerdata.HomeMaxSize") == null || homemaxsize < 6) {
 						  ConfigUtil.setplayerHomeMaxsize(player, 5);
+					  }
+					  if(CommandHomeList.listHomes(player).size() > homesize){
+						  Config.set("player.playerdata.HomeSize", (int)CommandHomeList.listHomes(player).size());
+						  PlayerdataAPI.saveYaml(player.getUniqueId(), Config);
+					  }
+					  if(CommandHomeList.listHomes(player).size() < homesize){
+						  Config.set("player.playerdata.HomeSize", (int)CommandHomeList.listHomes(player).size());
+						  PlayerdataAPI.saveYaml(player.getUniqueId(), Config);
 					  }
 					  if(Config.getString("player.playerdata.HomeSize")==null) {
 						  ConfigUtil.setplayerHomesize(player, 0);

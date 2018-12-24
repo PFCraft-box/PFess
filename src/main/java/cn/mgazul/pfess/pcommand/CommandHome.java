@@ -3,6 +3,7 @@ package cn.mgazul.pfess.pcommand;
 import java.io.File;
 import java.util.regex.Pattern;
 
+import cn.mgazul.pfcorelib.configuration.PlayerdataAPI;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -23,12 +24,12 @@ public class CommandHome implements CommandExecutor{
 		  
 	    if ((sender instanceof Player)) {
 	    	Player p = (Player)sender;
+			String uuid = p.getUniqueId().toString();
+			File file = new File("plugins/"+Msg.PluginName+"/Players", uuid+".yml");
+			YamlConfiguration Config = YamlConfiguration.loadConfiguration(file);
 	    	if ((args.length == 1)){
 	    		String name = args[0];
 				if(Pattern.compile("[\u4E00-\u9FA5A-Za-z0-9_]+$").matcher(name).matches()){
-	    			String uuid = p.getUniqueId().toString();
-	    			File file = new File("plugins/"+Msg.PluginName+"/Players", uuid.toString()+".yml");
-	    			FileConfiguration Config = YamlConfiguration.loadConfiguration(file);
 				  	int homesize =  Config.getInt("player.playerdata.HomeSize");
 				  	if(Config.getString("player.playerdata.HomeSize")==null||homesize == 0) {
 		    				MsgAPI.sendMsgToPlayer(p, Msg.preall+"&c没有设置传送点.");
@@ -45,6 +46,19 @@ public class CommandHome implements CommandExecutor{
 				}
 	    	}
 	    	if ((args.length == 0)){
+				int homesize = ConfigUtil.getplayerHomesize(p);
+				int homemaxsize = ConfigUtil.getplayerHomeMaxsize(p);
+				if(Config.getString("player.playerdata.HomeMaxSize") == null || homemaxsize < 6) {
+					ConfigUtil.setplayerHomeMaxsize(p, 5);
+				}
+				if(CommandHomeList.listHomes(p).size() > homesize){
+					Config.set("player.playerdata.HomeSize", (int)CommandHomeList.listHomes(p).size());
+					PlayerdataAPI.saveYaml(p.getUniqueId(), Config);
+				}
+				if(CommandHomeList.listHomes(p).size() < homesize){
+					Config.set("player.playerdata.HomeSize", (int)CommandHomeList.listHomes(p).size());
+					PlayerdataAPI.saveYaml(p.getUniqueId(), Config);
+				}
 	    		MsgAPI.sendMsgToPlayer(p, Msg.preall + "&6当前最大设家数量为: &c"+ConfigUtil.getplayerHomeMaxsize(p)+" &6已设家数量:&2 "+ ConfigUtil.getplayerHomesize(p));
 	    		MsgAPI.sendMsgToPlayer(p, Msg.preall + "&7/home <名字> &2传送到指定位置");
 	    		MsgAPI.sendMsgToPlayer(p, Msg.preall + "&7/sethome <名字> &2设置指定名字的位置");

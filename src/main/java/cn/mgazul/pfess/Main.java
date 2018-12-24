@@ -78,7 +78,6 @@ public class Main extends JavaPlugin implements Listener{
 		    getCommand("fcoins").setExecutor(new CommandFCoins());
 		    getCommand("money").setExecutor(new CommandMoney());
 		    getCommand("help").setExecutor(new CommandHelp());
-		    getCommand("suicide").setExecutor(new Suicide());
 		    getCommand("pf").setExecutor(new AdminCmd());
 		    getCommand("pf").setTabCompleter(new AdminCmd());
 		    getCommand("pfc").setExecutor(new ConsoleCmd());

@@ -35,7 +35,7 @@ public class CommandDelHome implements CommandExecutor{
 					  return true;
 				  }
 				  Config.set("Home." + name, null);
-				  ConfigUtil.removeHomesize(p, 1);
+				  Config.set("player.playerdata.HomeSize", homesize-1);
 				  PlayerdataAPI.saveYaml(p.getUniqueId(), Config);
 	    		  MsgAPI.sendMsgToPlayer(p, Msg.preall + "&2成功删除家:&6 " + name);
 				}else {

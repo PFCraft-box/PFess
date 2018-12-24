@@ -36,7 +36,7 @@ public class CommandHomeList implements CommandExecutor{
 			return false;
 	  }
 	
-    public ArrayList<String> listHomes(Player p) {
+    public static ArrayList<String> listHomes(Player p) {
     	YamlConfiguration Config = PlayerdataAPI.createYaml(p.getUniqueId()); 
         final ArrayList<String> list = new ArrayList<String>();
 		if (Config.getConfigurationSection("Home.") != null) {
@@ -46,4 +46,15 @@ public class CommandHomeList implements CommandExecutor{
 		}
         return list;
     }
+
+	public static ArrayList<String> listHomess(Player p) {
+		YamlConfiguration Config = PlayerdataAPI.createYaml(p.getUniqueId());
+		final ArrayList<String> list = new ArrayList<String>();
+		if (Config.getConfigurationSection("Home.") != null) {
+			for (final String key : Config.getConfigurationSection("Home").getKeys(false)) {
+				list.add(key);
+			}
+		}
+		return list;
+	}
 }
