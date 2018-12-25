@@ -1,5 +1,9 @@
 world:
 - null
+Settings:
+  head: '&7[&c系统&7]'
+  interval: 300
+  random: true
 Messages:
   text:
   - '&7[&c系统&7] &6坩埚上面放铁制活板门并右键可打开垃圾桶'
