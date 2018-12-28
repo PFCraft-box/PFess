@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+
+import cn.mgazul.pfess.tags.Gui;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Difficulty;
@@ -68,6 +70,7 @@ public class ConsoleCmd implements CommandExecutor, TabCompleter{
 	    	sender.sendMessage(" -tpw <世界名> 传送到指定世界的出生点");
 	    	sender.sendMessage(" -winfo <世界名> 查看该世界的信息");
 	    	sender.sendMessage(" -warp <id> <坐标名> 查看玩家信息");
+			sender.sendMessage(" -tags <id> <称号名字> <获取途径> <称号介绍> 给玩家添加称号");
 	     }
 	    if ((args.length == 3) && (args[0].equalsIgnoreCase("set")) && (sender.isOp())){	
 	    	if(args[1].equalsIgnoreCase("perfix")) {
@@ -114,6 +117,14 @@ public class ConsoleCmd implements CommandExecutor, TabCompleter{
 	        sender.sendMessage("OS-Version: "+ osVersion);
 	        sender.sendMessage("OS-Arch: "+osArch);
 	     }
+		if ((args.length == 5 ) && (args[0].equalsIgnoreCase("tags")) && (sender.hasPermission("pfess.admin"))){
+			if (Bukkit.getPlayer(args[1]) != null) {
+				Player p2 = Bukkit.getPlayer(args[1]);
+				Gui.setTags(p2, args[2], args[3], args[4]);
+			}else{
+				sender.sendMessage(ChatColor.GRAY + "玩家不在线.");
+			}
+		}
 	    if ((args.length == 2 ) && (args[0].equalsIgnoreCase("showp")) && (sender.hasPermission("pfess.admin"))){
 	        if (Bukkit.getPlayer(args[1]) != null){
 	      	    Player p2 = Bukkit.getPlayer(args[1]);
