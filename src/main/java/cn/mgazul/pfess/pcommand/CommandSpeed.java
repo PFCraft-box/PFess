@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import cn.mgazul.pfcorelib.message.Msg;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
-import cn.mgazul.pfcorelib.Msg;
 
 public class CommandSpeed implements CommandExecutor, TabCompleter{
 	

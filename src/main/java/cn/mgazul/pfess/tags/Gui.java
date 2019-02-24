@@ -1,7 +1,7 @@
 package cn.mgazul.pfess.tags;
 
-import cn.mgazul.pfcorelib.MsgAPI;
 import cn.mgazul.pfcorelib.configuration.PlayerdataAPI;
+import cn.mgazul.pfcorelib.message.MsgAPI;
 import cn.mgazul.pfess.PFessPapiHook;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

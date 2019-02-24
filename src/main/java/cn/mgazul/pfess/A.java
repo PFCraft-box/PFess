@@ -1,11 +1,10 @@
 package cn.mgazul.pfess;
 
+import cn.mgazul.pfcorelib.message.MsgAPI;
 import org.bukkit.*;
 import org.bukkit.configuration.file.*;
 import java.io.*;
 import java.util.*;
-
-import cn.mgazul.pfcorelib.MsgAPI;
 
 import org.bukkit.command.*;
 import org.bukkit.entity.*;

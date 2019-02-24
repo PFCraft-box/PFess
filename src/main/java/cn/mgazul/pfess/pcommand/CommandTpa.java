@@ -1,5 +1,7 @@
 package cn.mgazul.pfess.pcommand;
 
+import cn.mgazul.pfcorelib.message.Msg;
+import cn.mgazul.pfcorelib.message.MsgAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
@@ -7,8 +9,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import cn.mgazul.pfcorelib.Msg;
-import cn.mgazul.pfcorelib.MsgAPI;
 import cn.mgazul.pfess.Main;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;

@@ -1,12 +1,11 @@
 package cn.mgazul.pfess.pcommand;
 
+import cn.mgazul.pfcorelib.message.Msg;
+import cn.mgazul.pfcorelib.message.MsgAPI;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import cn.mgazul.pfcorelib.Msg;
-import cn.mgazul.pfcorelib.MsgAPI;
 
 public class CommandFly implements CommandExecutor{
 	

@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import cn.mgazul.pfcorelib.Msg;
+import cn.mgazul.pfcorelib.message.Msg;
 import cn.mgazul.pfess.chat.ChatFormatListener;
 import cn.mgazul.pfess.pcommand.*;
 import cn.mgazul.pfess.tags.Gui;

@@ -1,5 +1,7 @@
 package cn.mgazul.pfess.pcommand;
 
+import cn.mgazul.pfcorelib.economy.TongQianAPI;
+import cn.mgazul.pfcorelib.message.Msg;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
@@ -9,8 +11,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import cn.mgazul.pfcorelib.Formater;
-import cn.mgazul.pfcorelib.MoneyAPI;
-import cn.mgazul.pfcorelib.Msg;
 import cn.mgazul.pfcorelib.util.Java;
 
 public class CommandMoney implements CommandExecutor{
@@ -21,7 +21,7 @@ public class CommandMoney implements CommandExecutor{
 	    if (args.length == 0) {
 	      if ((sender instanceof Player)) {
 	        Player p = (Player)sender;
-	        sender.sendMessage(Msg.preall + "§7你的铜钱: §e" +Formater.formatValue(MoneyAPI.getMoneys(p.getUniqueId())));
+	        sender.sendMessage(Msg.preall + "§7你的铜钱: §e" +Formater.formatValue(TongQianAPI.getMoneys(p.getUniqueId())));
 	      } else {
 	        sender.sendMessage(Msg.preall + "§c此命令仅适用于玩家!");
 	      }
@@ -35,7 +35,7 @@ public class CommandMoney implements CommandExecutor{
 	        		return false;
 	        	}
 	        	if(argsname.equals(name)) {
-	        		sender.sendMessage(Msg.preall + "§7查询玩家 §7" + name + ": §6" + Formater.formatValue(MoneyAPI.getMoneys(target.getUniqueId())));
+	        		sender.sendMessage(Msg.preall + "§7查询玩家 §7" + name + ": §6" + Formater.formatValue(TongQianAPI.getMoneys(target.getUniqueId())));
 	        		return false;
 	        	}
 	        }
@@ -51,9 +51,9 @@ public class CommandMoney implements CommandExecutor{
 	        	String coins = args[2];
 	        	Player p = (Player)sender;
 	        	
-	        	if( MoneyAPI.getMoneys(p.getUniqueId()) >Double.valueOf(coins)) {
-	        	 MoneyAPI.addMoneys(target.getUniqueId(), Double.valueOf(coins));
-	        	 MoneyAPI.removeMoneys(p.getUniqueId(), Double.valueOf(coins));
+	        	if( TongQianAPI.getMoneys(p.getUniqueId()) >Double.valueOf(coins)) {
+	        	 TongQianAPI.addMoneys(target.getUniqueId(), Double.valueOf(coins));
+	        	 TongQianAPI.removeMoneys(p.getUniqueId(), Double.valueOf(coins));
 	        	 sender.sendMessage(Msg.preall + "§7你转账给 §7" + target.getDisplayName() + ": §e" +coins);
 	        	 target.sendMessage(Msg.preall + "§7你收到 §7"+ sender.getName()+": §e"+coins);
 	        	}else {
@@ -74,7 +74,7 @@ public class CommandMoney implements CommandExecutor{
 		        		return false;
 		        	}
 		        	if(argsname.equals(name)) {
-		    	        MoneyAPI.setMoneys(target.getUniqueId(),0.0);
+		    	        TongQianAPI.setMoneys(target.getUniqueId(),0.0);
 		    	        sender.sendMessage(Msg.preall + name + " §a的账户已重置.");
 		    	        return false;
 		        	}
@@ -95,7 +95,7 @@ public class CommandMoney implements CommandExecutor{
 			        	if(argsname.equals(name)) {
 					        String coins = args[2];			        
 					        if(Java.isNumeric(coins)) {
-					        MoneyAPI.addMoneys(target.getUniqueId(), Double.valueOf(coins));
+					        TongQianAPI.addMoneys(target.getUniqueId(), Double.valueOf(coins));
 					          sender.sendMessage(Msg.preall + "§7" + name + " §a添加铜钱 §6" + Formater.formatValue(Double.valueOf(coins)));	      
 					        }else {
 					        	 sender.sendMessage("无效数字");
@@ -115,7 +115,7 @@ public class CommandMoney implements CommandExecutor{
 				        	if(target.getName() == null ) {
 				        		return false;
 				        	}
-			        		MoneyAPI.addMoneys(target.getUniqueId(), Double.valueOf(coins));
+			        		TongQianAPI.addMoneys(target.getUniqueId(), Double.valueOf(coins));
 			        	}else {
 			        		sender.sendMessage("无效数字");
 			        	}
@@ -136,7 +136,7 @@ public class CommandMoney implements CommandExecutor{
 			        	if(argsname.equals(name)) {
 					        String coins = args[2];			        
 					        if(Java.isNumeric(coins)) {
-						          MoneyAPI.removeMoneys(target.getUniqueId(), Double.valueOf(coins));
+						          TongQianAPI.removeMoneys(target.getUniqueId(), Double.valueOf(coins));
 						          sender.sendMessage(Msg.preall + name + " §a失去铜钱 §6" + Formater.formatValue(Double.valueOf(coins)));
 					        }else {
 					        	 sender.sendMessage("无效数字");
@@ -160,7 +160,7 @@ public class CommandMoney implements CommandExecutor{
 			        	if(argsname.equals(name)) {
 					        String coins = args[2];			        
 					        if(Java.isNumeric(coins)) {
-					        	MoneyAPI.setMoneys(target.getUniqueId(), Double.valueOf(coins));
+					        	TongQianAPI.setMoneys(target.getUniqueId(), Double.valueOf(coins));
 						          sender.sendMessage(Msg.preall + "§a已设置玩家 §7" + name + " §a的铜钱为 §6" + Formater.formatValue(Double.valueOf(coins)));
 						        }else {
 					        	sender.sendMessage("无效数字");

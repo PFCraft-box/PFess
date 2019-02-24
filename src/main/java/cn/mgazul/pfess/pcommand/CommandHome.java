@@ -4,18 +4,17 @@ import java.io.File;
 import java.util.regex.Pattern;
 
 import cn.mgazul.pfcorelib.configuration.PlayerdataAPI;
+import cn.mgazul.pfcorelib.economy.TongQianAPI;
+import cn.mgazul.pfcorelib.message.Msg;
+import cn.mgazul.pfcorelib.message.MsgAPI;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import cn.mgazul.pfcorelib.configuration.ConfigUtil;
 import cn.mgazul.pfcorelib.util.Java;
-import cn.mgazul.pfcorelib.MoneyAPI;
-import cn.mgazul.pfcorelib.Msg;
-import cn.mgazul.pfcorelib.MsgAPI;
 
 public class CommandHome implements CommandExecutor{
 
@@ -25,7 +24,7 @@ public class CommandHome implements CommandExecutor{
 	    if ((sender instanceof Player)) {
 	    	Player p = (Player)sender;
 			String uuid = p.getUniqueId().toString();
-			File file = new File("plugins/"+Msg.PluginName+"/Players", uuid+".yml");
+			File file = new File("plugins/"+ Msg.PluginName+"/Players", uuid+".yml");
 			YamlConfiguration Config = YamlConfiguration.loadConfiguration(file);
 	    	if ((args.length == 1)){
 	    		String name = args[0];
@@ -70,9 +69,9 @@ public class CommandHome implements CommandExecutor{
 	        	 String coins = args[1];
 	        	 int homes = Integer.parseInt(coins);
 			     if(Java.isNumeric(coins)) {
-			    	 if(MoneyAPI.getMoneys(p.getUniqueId())>= 10000.0 * homes) {
+			    	 if(TongQianAPI.getMoneys(p.getUniqueId())>= 10000.0 * homes) {
 		    			ConfigUtil.setplayerHomeMaxsize(p, homes);
-		    			MoneyAPI.removeMoneys(p.getUniqueId(), 10000.0*homes);
+						 TongQianAPI.removeMoneys(p.getUniqueId(), 10000.0*homes);
 		    			MsgAPI.sendMsgToPlayer(p, Msg.preall + "&6设家上限已增加: &21,&6当前最大设家数量为: &c"+ConfigUtil.getplayerHomeMaxsize(p));      
 			    	 } else {
 	    			MsgAPI.sendMsgToPlayer(p, Msg.preall + "&c余额不足,需要铜钱:&6 " + 10000.0*homes);

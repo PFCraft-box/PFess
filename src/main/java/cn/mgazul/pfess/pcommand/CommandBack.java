@@ -2,14 +2,14 @@ package cn.mgazul.pfess.pcommand;
 
 import java.io.File;
 
+import cn.mgazul.pfcorelib.message.Msg;
+import cn.mgazul.pfcorelib.message.MsgAPI;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import cn.mgazul.pfcorelib.Msg;
-import cn.mgazul.pfcorelib.MsgAPI;
 import cn.mgazul.pfcorelib.configuration.ConfigUtil;
 import cn.mgazul.pfcorelib.nms.TitleAPI;
 import cn.mgazul.pfess.Main;
@@ -23,7 +23,7 @@ public class CommandBack implements CommandExecutor{
 	    	Player p = (Player)sender;
 	    	if ((args.length == 0)){
 	    		String uuid = p.getUniqueId().toString();	    
-	    		File file = new File("plugins/"+Msg.PluginName+"/Players", uuid.toString()+".yml");	
+	    		File file = new File("plugins/"+ Msg.PluginName+"/Players", uuid.toString()+".yml");
 	    		FileConfiguration Config = YamlConfiguration.loadConfiguration(file);
 	    		if(Config.getString("DeathLoc.world")==null) {
 	    			MsgAPI.sendMsgToPlayer(p, Msg.preall + "&c没有记录点.");

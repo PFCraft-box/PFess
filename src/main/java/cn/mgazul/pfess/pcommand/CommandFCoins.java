@@ -1,14 +1,14 @@
 package cn.mgazul.pfess.pcommand;
 
+import cn.mgazul.pfcorelib.economy.YinLiangAPI;
+import cn.mgazul.pfcorelib.message.Msg;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import cn.mgazul.pfcorelib.FCoinsAPI;
 import cn.mgazul.pfcorelib.Formater;
-import cn.mgazul.pfcorelib.Msg;
 import cn.mgazul.pfcorelib.util.Java;
 
 public class CommandFCoins implements CommandExecutor{
@@ -19,7 +19,7 @@ public class CommandFCoins implements CommandExecutor{
 	    if (args.length == 0) {
 	      if ((sender instanceof Player)) {
 	        Player p = (Player)sender;
-	        sender.sendMessage(Msg.preall + "§7你的鱼币: §e" + Formater.formatValue(FCoinsAPI.getFCoins(p.getUniqueId())));
+	        sender.sendMessage(Msg.preall + "§7你的鱼币: §e" + Formater.formatValue(YinLiangAPI.getYinLiang(p.getUniqueId())));
 	      } else {
 	        sender.sendMessage(Msg.preall + "§c此命令仅适用于玩家!");
 	      }
@@ -33,7 +33,7 @@ public class CommandFCoins implements CommandExecutor{
 	        		return false;
 	        	}
 	        	if(argsname.equals(name)) {
-	        		sender.sendMessage(Msg.preall + "§7查询玩家 §7" + name + ": §6" + Formater.formatValue(FCoinsAPI.getFCoins(target.getUniqueId())));
+	        		sender.sendMessage(Msg.preall + "§7查询玩家 §7" + name + ": §6" + Formater.formatValue(YinLiangAPI.getYinLiang(target.getUniqueId())));
 	        		return false;
 	        	}
 	        }
@@ -48,7 +48,7 @@ public class CommandFCoins implements CommandExecutor{
 			        		return false;
 			        	}
 			        	if(argsname.equals(name)) {
-			    	        FCoinsAPI.setFCoins(target.getUniqueId(),0.0);
+			    	        YinLiangAPI.setYinLiang(target.getUniqueId(),0.0);
 			    	        sender.sendMessage(Msg.preall + name + " §a的账户已重置.");
 			    	        return false;
 			        	}
@@ -69,7 +69,7 @@ public class CommandFCoins implements CommandExecutor{
 				        	if(argsname.equals(name)) {
 						        String coins = args[2];			        
 						        if(Java.isNumeric(coins)) {
-							          FCoinsAPI.addFCoins(target.getUniqueId(), Double.valueOf(coins));
+							          YinLiangAPI.addYinLiang(target.getUniqueId(), Double.valueOf(coins));
 							          sender.sendMessage(Msg.preall + "§7" + name + " §a添加鱼币 §6" + Formater.formatValue(Double.valueOf(coins)));	      
 						        }else {
 						        	 sender.sendMessage("无效数字");
@@ -89,7 +89,7 @@ public class CommandFCoins implements CommandExecutor{
 					        	if(target.getName() == null ) {
 					        		return false;
 					        	}
-					        	FCoinsAPI.addFCoins(target.getUniqueId(), Double.valueOf(coins));
+					        	YinLiangAPI.addYinLiang(target.getUniqueId(), Double.valueOf(coins));
 				        		sender.sendMessage(Msg.preall +"§7" + target.getName() + " §a添加鱼币§6" + Formater.formatValue(Double.valueOf(coins)));	      
 				        	}else {
 				        		sender.sendMessage("无效数字");
@@ -111,7 +111,7 @@ public class CommandFCoins implements CommandExecutor{
 				        	if(argsname.equals(name)) {
 						        String coins = args[2];			        
 						        if(Java.isNumeric(coins)) {
-							          FCoinsAPI.removeFCoins(target.getUniqueId(), Double.valueOf(coins));
+							          YinLiangAPI.removeYinLiang(target.getUniqueId(), Double.valueOf(coins));
 							          sender.sendMessage(Msg.preall + name + " §a失去鱼币 §6" + Double.valueOf(Double.valueOf(coins)));
 						        }else {
 						        	 sender.sendMessage("无效数字");
@@ -135,7 +135,7 @@ public class CommandFCoins implements CommandExecutor{
 				        	if(argsname.equals(name)) {
 						        String coins = args[2];			        
 						        if(Java.isNumeric(coins)) {
-							          FCoinsAPI.setFCoins(target.getUniqueId(), Double.valueOf(coins));
+							          YinLiangAPI.setYinLiang(target.getUniqueId(), Double.valueOf(coins));
 							          sender.sendMessage(Msg.preall + "§a已设置玩家 §7" + name + " §a的鱼币为 §6" + Double.valueOf(Double.valueOf(coins)));
 							        }else {
 						        	sender.sendMessage("无效数字");

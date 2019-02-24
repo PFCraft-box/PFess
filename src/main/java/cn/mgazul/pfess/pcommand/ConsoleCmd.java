@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import cn.mgazul.pfcorelib.message.Msg;
+import cn.mgazul.pfcorelib.message.MsgAPI;
 import cn.mgazul.pfess.tags.Gui;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -26,10 +28,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
-import cn.mgazul.pfcorelib.FCoinsAPI;
-import cn.mgazul.pfcorelib.MoneyAPI;
-import cn.mgazul.pfcorelib.Msg;
-import cn.mgazul.pfcorelib.MsgAPI;
 import cn.mgazul.pfcorelib.configuration.ConfigUtil;
 import cn.mgazul.pfcorelib.world.WorldWrapper;
 import cn.mgazul.pfess.Main;
@@ -137,8 +135,6 @@ public class ConsoleCmd implements CommandExecutor, TabCompleter{
 	          	sender.sendMessage("§7§l饥饿度>§8§l"+p2.getFoodLevel());
 	          	sender.sendMessage("§7§lEXP经验>§8§l"+p2.getLevel());
 	          	sender.sendMessage("§7§l当前位置>"+"§3§l世界:§8§l"+p2.getWorld().getName()+"§3§lX:§8§l"+p2.getLocation().getBlockX()+"§3§lY:§8§l"+p2.getLocation().getBlockY()+"§3§lZ:§8§l"+p2.getLocation().getBlockZ());
-	          	sender.sendMessage("§7§l鱼币>§8§l" + FCoinsAPI.getFCoins(p2.getUniqueId()));
-	          	sender.sendMessage("§7§l铜钱>§8§l" + MoneyAPI.getMoneys(p2.getUniqueId()));
 	          	sender.sendMessage("§7§l游戏模式>§8§l"+p2.getGameMode());   
 	          	sender.sendMessage("§7§l飞行速度>§8§l"+p2.getFlySpeed()); 
 	          	sender.sendMessage("§7§l行走速度>§8§l"+p2.getWalkSpeed());
@@ -357,7 +353,7 @@ public class ConsoleCmd implements CommandExecutor, TabCompleter{
 			long memoryAfterGC = getCurrentMemoryUsage();
 			if (memoryAfterGC < memoryBeforeGC) {
 				long gcMemory = (memoryAfterGC - memoryBeforeGC) / 1024 / 1024;
-				sender.sendMessage(Msg.preall+MsgAPI.colormsg("&2回收了&6&n "+Math.abs(gcMemory)+"MB &2内存"));
+				sender.sendMessage(Msg.preall+ MsgAPI.colormsg("&2回收了&6&n "+Math.abs(gcMemory)+"MB &2内存"));
 			} else {
 				sender.sendMessage(Msg.preall+MsgAPI.colormsg("&c垃圾回收操作执行无效果"));
 			}
