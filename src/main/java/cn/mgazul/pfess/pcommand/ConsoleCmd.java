@@ -36,11 +36,10 @@ import cn.mgazul.pfess.Main;
 import cn.mgazul.pfess.StatsUtils;
 
 public class ConsoleCmd implements CommandExecutor, TabCompleter{
-		  
-	@SuppressWarnings("deprecation")
+
 	public static List<Material> BAND_MATERIALES = Arrays.asList(new Material[] { 
-			    Material.LEGACY_STATIONARY_WATER, 
-			    Material.LEGACY_STATIONARY_LAVA, 
+			    Material.STATIONARY_WATER,
+			    Material.STATIONARY_LAVA,
 			    Material.WATER, 
 			    Material.LAVA });
 	

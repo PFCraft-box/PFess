@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import cn.mgazul.pfcorelib.Msg;
 import cn.mgazul.pfess.chat.ChatFormatListener;
 import cn.mgazul.pfess.pcommand.*;
 import cn.mgazul.pfess.tags.Gui;
+import me.clip.placeholderapi.util.Msg;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
@@ -108,4 +108,5 @@ public class Main extends JavaPlugin implements Listener{
 	public void onDisable() {
 		  PFessPapiHook.unhook();
 	  }
+
 }

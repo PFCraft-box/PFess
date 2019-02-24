@@ -63,13 +63,13 @@ public class Gui implements Listener {
         }
         inventory.setItem(46, createItem(Material.REDSTONE_BLOCK, MsgAPI.colormsg("&4清除佩戴的称号")));
         inventory.setItem(48, createItem(Material.IRON_DOOR, MsgAPI.colormsg("&4关闭菜单")));
-        inventory.setItem(49, createItem(Material.PLAYER_HEAD, MsgAPI.colormsg("&7已佩戴称号: ") + PFessPapiHook.replacepapi(p, "%pfess_tags%")));
+        inventory.setItem(49, createItem(Material.SKULL_ITEM, MsgAPI.colormsg("&7已佩戴称号: ") + PFessPapiHook.replacepapi(p, "%pfess_tags%")));
         inventory.setItem(50, createItem(Material.IRON_DOOR, MsgAPI.colormsg("&4关闭菜单")));
 
         p.openInventory(inventory);
         for (int i = 36; i < 45; i++)
             if (inventory.getItem(i) == null){
-                ItemStack itemStack = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
+                ItemStack itemStack = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short)15);
                 ItemMeta itemMeta = itemStack.getItemMeta();
                 itemMeta.setDisplayName("§r");
                 itemStack.setItemMeta(itemMeta);

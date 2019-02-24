@@ -2,7 +2,6 @@ name: PFess
 main: cn.mgazul.pfess.Main
 version: @version@
 author: Mgazul
-api-version: 1.13
 softdepend: [PF-CoreLib, PlaceholderAPI]
 
 commands:

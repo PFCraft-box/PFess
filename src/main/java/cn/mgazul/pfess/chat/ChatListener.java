@@ -31,7 +31,7 @@ public class ChatListener implements Listener{
 			e.setCancelled(true);
             e.getPlayer().sendMessage(ChatColor.GRAY + "你成功@了" + ChatColor.GRAY + target.getDisplayName());
             target.sendMessage(ChatColor.GRAY + ""+e.getPlayer().getDisplayName() + "@了你 ");
-            target.playSound(target.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 10.0F, 0.0F);
+            target.playSound(target.getLocation(), Sound.BLOCK_NOTE_PLING, 10.0F, 0.0F);
           }
         }
     }	 

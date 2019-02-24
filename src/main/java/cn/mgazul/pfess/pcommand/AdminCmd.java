@@ -72,7 +72,7 @@ public class AdminCmd implements CommandExecutor, TabCompleter{
 			        		return false;
 			        	}
 			        	if(argsname.equals(name)) {
-			        		ItemStack C1 = new ItemStack(Material.PLAYER_HEAD, 1);
+			        		ItemStack C1 = new ItemStack(Material.SKULL_ITEM, 1);
 			        		SkullMeta sm = (SkullMeta)C1.getItemMeta();
 			        		sm.setOwningPlayer(target);
 			            	C1.setItemMeta((ItemMeta)sm);
@@ -130,26 +130,26 @@ public class AdminCmd implements CommandExecutor, TabCompleter{
 			          i.setItem(3, item[0]);          
 			         
 			          if(p.getInventory().getItemInMainHand().getType().equals(Material.AIR)) {
-			        	  i.setItem(5, new CustomItem(Material.ORANGE_STAINED_GLASS_PANE,"§7主手",1));        	    
+			        	  i.setItem(5, new CustomItem(Material.STAINED_GLASS_PANE,"§7主手",1));
 			          }else {
 			        	  i.setItem(5, p.getInventory().getItemInMainHand());
 			          }
 			          if(p.getInventory().getItemInOffHand().getType().equals(Material.AIR)) {
-			        	  i.setItem(6, new CustomItem(Material.ORANGE_STAINED_GLASS_PANE,"§7副手",1));
+			        	  i.setItem(6, new CustomItem(Material.STAINED_GLASS_PANE,"§7副手",1));
 			          }else {
 			        	  i.setItem(6, p.getInventory().getItemInOffHand());
 			          }
 			          if(item[3]==null) {
-			        	  i.setItem(0, new CustomItem(Material.ORANGE_STAINED_GLASS_PANE,"§7帽子",1));  
+			        	  i.setItem(0, new CustomItem(Material.STAINED_GLASS_PANE,"§7帽子",1));
 			          }
 			          if(item[2]==null) {
-			        	  i.setItem(1, new CustomItem(Material.ORANGE_STAINED_GLASS_PANE,"§7衣服",1));  
+			        	  i.setItem(1, new CustomItem(Material.STAINED_GLASS_PANE,"§7衣服",1));
 			          }
 			          if(item[1]==null) {
-			        	  i.setItem(2, new CustomItem(Material.ORANGE_STAINED_GLASS_PANE,"§7裤子",1));  
+			        	  i.setItem(2, new CustomItem(Material.STAINED_GLASS_PANE,"§7裤子",1));
 			          }
 			          if(item[0]==null) {
-			        	  i.setItem(3, new CustomItem(Material.ORANGE_STAINED_GLASS_PANE,"§7鞋子",1));  
+			        	  i.setItem(3, new CustomItem(Material.STAINED_GLASS_PANE,"§7鞋子",1));
 			          } 
 					    player.openInventory(i);			     
 			        }
